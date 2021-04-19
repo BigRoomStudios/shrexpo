@@ -1,0 +1,47 @@
+{
+  "name": "shrexpo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.2",
+    "connected-react-router": "^6.9.1",
+    "history": "^5.0.0",
+    "immer": "^9.0.1",
+    "normalizr": "^3.6.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "react-router": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
+    "strange-middle-end": "^0.4.0",
+    "strange-router": "^2.1.0",
+    "styled-components": "^5.2.3"
+  },
+  "devDependencies": {
+    "@hapi/eslint-config-hapi": "^13.0.2",
+    "@hapi/eslint-plugin-hapi": "^4.3.6",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-inline-import": "^3.0.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.24.0",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "eslintConfig": {
+    "extends": "./config/eslint.config.js"
+  }
+}
