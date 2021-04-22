@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+const { default: AppLoading } = require('expo-app-loading');
 const { StatusBar } = require('expo-status-bar');
 const { ThemeProvider } = require('styled-components');
 const { NavigationContainer } = require('@react-navigation/native');
@@ -10,6 +11,13 @@ const MiddleEnd = require('strange-middle-end');
 const M = require('middle-end');
 const Theme = require('theme');
 const Routes = require('routes');
+const {
+    useFonts,
+    OpenSans_400Regular,
+    OpenSans_400Regular_Italic,
+    OpenSans_700Bold,
+    OpenSans_700Bold_Italic
+} = require('@expo-google-fonts/open-sans');
 
 const middleEnd = M.create({
     basePath: process.env.BASE_PATH,
@@ -19,6 +27,17 @@ const middleEnd = M.create({
 const Stack = createStackNavigator();
 
 module.exports = function App() {
+
+    const [fontsLoaded] = useFonts({
+        OpenSans_400Regular,
+        OpenSans_400Regular_Italic,
+        OpenSans_700Bold,
+        OpenSans_700Bold_Italic
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }
 
     return (
         <ThemeProvider theme={Theme}>
@@ -30,6 +49,7 @@ module.exports = function App() {
 
                                 return (
                                     <Stack.Screen
+                                        key={path}
                                         name={path}
                                         component={component}
                                         options={options}
