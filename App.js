@@ -2,9 +2,9 @@
 
 const React = require('react');
 const { StatusBar } = require('expo-status-bar');
-const { ConnectedRouter: Router } = require('connected-react-router');
-const StrangeRouter = require('strange-router');
 const { ThemeProvider } = require('styled-components');
+const { NavigationContainer } = require('@react-navigation/native');
+const { createStackNavigator } = require('@react-navigation/stack');
 const ReactRedux = require('react-redux');
 const MiddleEnd = require('strange-middle-end');
 const M = require('middle-end');
@@ -16,15 +16,28 @@ const middleEnd = M.create({
     logErrors: process.env.NODE_ENV !== 'test'
 }).initialize();
 
+const Stack = createStackNavigator();
+
 module.exports = function App() {
 
     return (
         <ThemeProvider theme={Theme}>
             <MiddleEnd.Provider middleEnd={middleEnd}>
                 <ReactRedux.Provider store={middleEnd.store}>
-                    <Router history={middleEnd.mods.router.history}>
-                        <StrangeRouter.Routes routes={Routes} />
-                    </Router>
+                    <NavigationContainer>
+                        <Stack.Navigator>
+                            {Routes.map(({ path, component, options }) => {
+
+                                return (
+                                    <Stack.Screen
+                                        name={path}
+                                        component={component}
+                                        options={options}
+                                    />
+                                );
+                            })}
+                        </Stack.Navigator>
+                    </NavigationContainer>
                     <StatusBar style="auto" />
                 </ReactRedux.Provider>
             </MiddleEnd.Provider>

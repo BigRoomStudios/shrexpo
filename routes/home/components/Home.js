@@ -1,9 +1,13 @@
 'use strict';
 
 const React = require('react');
-const { Text } = require('react-native');
+const { View, Text, Image } = require('react-native');
+const Duck = require('../../../assets/duck.jpeg');
 
 module.exports = function Home() {
 
-    return <Text>Welcome home</Text>;
+    return <View>
+        <Image source={Duck} />
+        <Text>Welcome home</Text>
+    </View>;
 };
