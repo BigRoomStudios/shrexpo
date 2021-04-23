@@ -1,5 +1,3 @@
-'use strict';
-
 const React = require('react');
 const { default: AppLoading } = require('expo-app-loading');
 const { StatusBar } = require('expo-status-bar');

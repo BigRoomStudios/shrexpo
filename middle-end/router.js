@@ -1,5 +1,3 @@
-'use strict';
-
 const { createMemoryHistory } = require('history');
 const ConnectedRouter = require('connected-react-router');
 

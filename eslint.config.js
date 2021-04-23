@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     parser: 'babel-eslint',
     env: {
@@ -10,6 +8,7 @@ module.exports = {
         node: true
     },
     plugins: [
+        'react',
         'jsx-a11y',
         'react-hooks'
     ],
@@ -25,13 +24,17 @@ module.exports = {
         'react/jsx-uses-vars': 'warn',
         'react/react-in-jsx-scope': 'off',
         'react-hooks/exhaustive-deps': 'warn',
-        'react-hooks/rules-of-hooks': 'error'
+        'react-hooks/rules-of-hooks': 'error',
+        'strict': 'off'
     },
     overrides: [
         {
             files: ['!src/**'],
             parserOptions: {
-                sourceType: 'script'
+                sourceType: 'script',
+                ecmaFeatures: {
+                    jsx: true
+                }
             }
         }
     ]

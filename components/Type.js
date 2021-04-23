@@ -1,5 +1,3 @@
-'use strict';
-
 const { default: Styled } = require('styled-components/native');
 
 exports.Text = Styled.Text`

@@ -52,6 +52,6 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "eslintConfig": {
-    "extends": "./config/eslint.config.js"
+    "extends": "./eslint.config.js"
   }
 }

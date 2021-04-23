@@ -1,5 +1,3 @@
-'use strict';
-
 const Color = require('./color');
 
 const BASE_FONT_SIZE = 16;
