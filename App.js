@@ -19,7 +19,6 @@ const {
 } = require('@expo-google-fonts/open-sans');
 
 const middleEnd = M.create({
-    basePath: process.env.BASE_PATH,
     logErrors: process.env.NODE_ENV !== 'test'
 }).initialize();
 

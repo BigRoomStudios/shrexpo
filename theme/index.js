@@ -1,4 +1,4 @@
-const Color = require('./color');
+const { Color } = require('./helpers');
 
 const BASE_FONT_SIZE = 16;
 
