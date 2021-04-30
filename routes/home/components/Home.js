@@ -1,8 +1,8 @@
 const React = require('react');
 const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
-const { View, Image, Button } = require('react-native');
-const { Text } = require('components/Type');
+const { Image } = require('react-native');
+const { Button, Layout, Text } = require('@ui-kitten/components');
 const Duck = require('../../../assets/duck.jpg');
 
 const Ducky = Styled(Image)`
@@ -10,19 +10,20 @@ const Ducky = Styled(Image)`
 `;
 
 const WelcomeText = Styled(Text)`
+    margin: auto auto ${({ theme }) => theme.spacing(1)}px;
+`;
+
+const CenteredButton = Styled(Button)`
     margin: auto;
 `;
 
 module.exports = function Home({ navigation }) {
 
-    return <View>
+    return <Layout>
         <Ducky source={Duck} />
         <WelcomeText>you've been shreked</WelcomeText>
-        <Button
-            title="Go to Demo"
-            onPress={() => navigation.navigate('/demo')}
-        />
-    </View>;
+        <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
+    </Layout>;
 };
 
 module.exports.propTypes = {

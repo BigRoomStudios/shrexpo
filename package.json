@@ -12,11 +12,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@eva-design/eva": "^2.1.0",
     "@expo-google-fonts/dev": "^0.1.0",
     "@expo-google-fonts/open-sans": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "@ui-kitten/components": "^5.1.0",
     "envy": "^2.0.0",
     "expo": "^41.0.0",
     "expo-app-loading": "^1.0.3",
@@ -33,6 +35,7 @@
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
+    "react-native-svg": "12.1.0",
     "react-redux": "^7.2.3",
     "react-router": "^5.2.0",
     "redux": "^4.0.5",
