@@ -1,23 +1,19 @@
-'use strict';
-
 const MiddleEnd = require('strange-middle-end');
 const Redux = require('redux');
 const ReduxDevtools = require('redux-devtools-extension/logOnlyInProduction');
-
-const Router = require('./router');
+const Counter = require('./counter');
 
 exports.create = (options = {}) => {
 
     const middleEnd = MiddleEnd.create({
         mods: () => ({
-            router: Router(middleEnd, options)
+            counter: Counter(middleEnd, options)
         }),
-        createStore: (reducer, { router }) => {
+        createStore: (reducer) => {
 
             const middleware = [
                 MiddleEnd.middleware.thunk,
-                options.logErrors && MiddleEnd.middleware.errorLogger,
-                router.middleware
+                options.logErrors && MiddleEnd.middleware.errorLogger
             ];
 
             return Redux.createStore(reducer, ReduxDevtools.composeWithDevTools(
