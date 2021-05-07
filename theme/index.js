@@ -1,67 +1,35 @@
-const { Color } = require('./helpers');
+const EvaTheme = require('./eva');
+const { Color, paletteFromTheme } = require('./helpers');
 
 const BASE_FONT_SIZE = 16;
 
 module.exports = {
+    ...EvaTheme,
     spacing: (m) => BASE_FONT_SIZE * m,
     palette: {
-        slate: new Color('#FFFFFF'),
-        etch: new Color('#333333'),
-        primary: new Color({
-            100: '#D6E4FF',
-            200: '#ADC8FF',
-            300: '#84A9FF',
-            400: '#6690FF',
-            500: '#3366FF',
-            600: '#254EDB',
-            700: '#1939B7',
-            800: '#102693',
-            900: '#091A7A'
+        slate: new Color({
+            100: '#FFFFFF',
+            200: '#FAFAFA',
+            300: '#F7F7F7',
+            400: '#F0F0F0',
+            500: '#EEEEEE',
+            600: '#DDDDDD',
+            700: '#CCCCCC',
+            800: '#BBBBBB',
+            900: '#AAAAAA'
         }),
-        success: new Color({
-            100: '#F5FDCC',
-            200: '#E9FB99',
-            300: '#D6F465',
-            400: '#C1EA3F',
-            500: '#A4DD06',
-            600: '#87BE04',
-            700: '#6D9F03',
-            800: '#548001',
-            900: '#426A01'
+        etch: new Color({
+            100: '#111111',
+            200: '#222222',
+            300: '#333333',
+            400: '#444444',
+            500: '#555555',
+            600: '#666666',
+            700: '#777777',
+            800: '#888888',
+            900: '#999999'
         }),
-        info: new Color({
-            100: '#D7FEF1',
-            200: '#B0FDEB',
-            300: '#88FBE9',
-            400: '#6AF7ED',
-            500: '#3AEFF2',
-            600: '#2ABFD0',
-            700: '#1D93AE',
-            800: '#126B8C',
-            900: '#0B4E74'
-        }),
-        warning: new Color({
-            100: '#FFF5D7',
-            200: '#FFE7AF',
-            300: '#FFD787',
-            400: '#FFC769',
-            500: '#FFAC38',
-            600: '#DB8928',
-            700: '#B7691C',
-            800: '#934D11',
-            900: '#7A380A'
-        }),
-        danger: new Color({
-            100: '#FFE6D6',
-            200: '#FFC6AD',
-            300: '#FFA083',
-            400: '#FF7C65',
-            500: '#FF4032',
-            600: '#DB2427',
-            700: '#B71928',
-            800: '#930F27',
-            900: '#7A0927'
-        })
+        ...paletteFromTheme(EvaTheme)
     },
     typography: {
         primary: 'OpenSans_400Regular'

@@ -1,8 +1,14 @@
-'use strict';
-
 const React = require('react');
-const { KeyboardAvoidingView, SafeAreaView, ScrollView, Keyboard } = require('react-native');
+const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
+const {
+    KeyboardAvoidingView,
+    SafeAreaView,
+    ScrollView,
+    Keyboard,
+    Platform
+} = require('react-native');
+
 
 const Header = Styled.View`
     background: ${({ theme }) => theme.palette.BRAND};
@@ -27,7 +33,7 @@ module.exports = function Layout({ children }) {
             </Header>
             <KeyboardAvoidingView
                 style={{ flex: 1 }}
-                behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             >
                 <ScrollView onPress={Keyboard.dismiss}>
                     {children}
@@ -35,4 +41,8 @@ module.exports = function Layout({ children }) {
             </KeyboardAvoidingView>
         </>
     );
+};
+
+module.exports.propTypes = {
+    children: T.element
 };
