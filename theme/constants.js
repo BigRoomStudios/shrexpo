@@ -1,0 +1,1 @@
+exports.BASE_SCALING_FACTOR = 8;

@@ -1,11 +1,9 @@
 const EvaTheme = require('./eva');
-const { Color, paletteFromTheme } = require('./helpers');
-
-const BASE_FONT_SIZE = 16;
+const { Color, paletteFromTheme, spacing } = require('./helpers');
 
 module.exports = {
     ...EvaTheme,
-    spacing: (m) => BASE_FONT_SIZE * m,
+    spacing,
     palette: {
         slate: new Color({
             100: '#FFFFFF',
@@ -35,3 +33,5 @@ module.exports = {
         primary: 'OpenSans_400Regular'
     }
 };
+
+

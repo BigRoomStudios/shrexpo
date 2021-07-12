@@ -1,17 +1,18 @@
+const Layout = require('components/Layout');
 const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 
 module.exports = [
     {
         path: '/',
-        component: Home,
+        component: Layout(Home),
         options: {
             title: 'Home'
         }
     },
     {
         path: '/demo',
-        component: Demo,
+        component: Layout(Demo),
         options: {
             title: 'Demo'
         }

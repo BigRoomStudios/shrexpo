@@ -4,7 +4,7 @@ const getBaseStyles = (theme) => {
 
     return `
         font-family: 'OpenSans_400Regular';
-        font-size: ${theme.spacing(1)}px;
+        font-size: ${theme.spacing(2)}px;
         color: ${theme.palette.etch};
     `;
 };
@@ -21,24 +21,24 @@ exports.CenteredText = Styled.Text`
 
 exports.H1 = Styled.Text`
     ${({ theme }) => getBaseStyles(theme)}
-    margin-bottom: ${({ theme }) => theme.spacing(2)}px;
+    margin-bottom: ${({ theme }) => theme.spacing(4)}px;
     font-family: 'OpenSans_700Bold';
-    font-size: ${({ theme }) => theme.spacing(2)}px;
+    font-size: ${({ theme }) => theme.spacing(4)}px;
     font-weight: bold;
 `;
 
 exports.H2 = Styled.Text`
     ${({ theme }) => getBaseStyles(theme)}
-    margin-bottom: ${({ theme }) => theme.spacing(1.5)}px;
+    margin-bottom: ${({ theme }) => theme.spacing(3)}px;
     font-family: 'OpenSans_700Bold';
-    font-size: ${({ theme }) => theme.spacing(1.5)}px;
+    font-size: ${({ theme }) => theme.spacing(3)}px;
     font-weight: bold;
 `;
 
 exports.H3 = Styled.Text`
     ${({ theme }) => getBaseStyles(theme)}
-    margin-bottom: ${({ theme }) => theme.spacing(1.2)}px;
+    margin-bottom: ${({ theme }) => theme.spacing(2.4)}px;
     font-family: 'OpenSans_700Bold';
-    font-size: ${({ theme }) => theme.spacing(1.2)}px;
+    font-size: ${({ theme }) => theme.spacing(2.4)}px;
     font-weight: bold;
 `;

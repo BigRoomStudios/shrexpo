@@ -1,5 +1,6 @@
 const Color = require('color');
 const Assert = require('../utils/assert');
+const { BASE_SCALING_FACTOR } = require('./constants');
 
 exports.Color = class {
     constructor(shades) {
@@ -12,14 +13,7 @@ exports.Color = class {
         Object.keys(shades).forEach((shade) => (this[shade] = shades[shade]));
     }
 
-    shade(shade) {
-
-        return this[shade];
-    }
-
-    alter(shade) {
-
-        Assert(typeof this[shade] === 'string', 'You must specify a valid shade');
+    alter(shade = 500) {
 
         return Color(this[shade]);
     }
@@ -55,4 +49,15 @@ exports.paletteFromTheme = (theme) => {
         acc[color] = new exports.Color(colors[color]);
         return acc;
     }, {});
+};
+
+exports.spacing = (...args) => {
+
+    if (args.length === 1) {
+        return args[0] * BASE_SCALING_FACTOR;
+    }
+
+    const argToValue = (a) => (isNaN(a) ? a : `${Number(a) * BASE_SCALING_FACTOR}px`);
+
+    return args.map(argToValue).join(' ');
 };
