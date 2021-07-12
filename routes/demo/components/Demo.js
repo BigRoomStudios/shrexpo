@@ -7,19 +7,19 @@ const { CenteredText, H2, getBaseStyles } = require('components/Type');
 const { CenteredView, FormView } = require('components/Views');
 
 const Heading = Styled(H2)`
-    margin: ${({ theme }) => theme.spacing(2)}px auto;
-    font-size: ${({ theme }) => theme.spacing(1.5)}px;
+    margin: ${({ theme }) => theme.spacing(5, 'auto')};
+    font-size: ${({ theme }) => theme.spacing(3)}px;
 `;
 
 const ButtonWrapper = Styled.View`
-    margin-bottom: ${({ theme }) => theme.spacing(1)}px;
+    margin-bottom: ${({ theme }) => theme.spacing(4)}px;
 `;
 
 const Input = Styled(TextInput)`
     ${({ theme }) => getBaseStyles(theme)}
     width: 90%;
-    margin: ${({ theme }) => theme.spacing(1)}px auto;
-    padding: ${({ theme }) => theme.spacing(1)}px;
+    margin: ${({ theme }) => theme.spacing(4, 'auto')};
+    padding: ${({ theme }) => theme.spacing(4)}px;
     border: 1px solid;
 `;
 

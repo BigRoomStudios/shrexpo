@@ -1,38 +1,26 @@
-'use strict';
-
 const React = require('react');
-const { KeyboardAvoidingView, SafeAreaView, ScrollView, Keyboard } = require('react-native');
-const { default: Styled } = require('styled-components/native');
+const {
+    KeyboardAvoidingView,
+    ScrollView,
+    Keyboard,
+    Platform
+} = require('react-native');
 
-const Header = Styled.View`
-    background: ${({ theme }) => theme.palette.BRAND};
-`;
+module.exports = function Layout(Component) {
 
-const HeaderText = Styled.Text`
-    padding: ${({ theme }) => theme.spacing(0.25)}px 0 ${({ theme }) => theme.spacing(1.5)}px;
-    font-size: ${({ theme }) => theme.spacing(1.125)}px;
-    font-weight: bold;
-    text-align: center;
-    color: ${({ theme }) => theme.palette.ETCH};
-`;
+    return (props) => {
 
-module.exports = function Layout({ children }) {
-
-    return (
-        <>
-            <Header>
-                <SafeAreaView>
-                    <HeaderText>shrexpo</HeaderText>
-                </SafeAreaView>
-            </Header>
-            <KeyboardAvoidingView
-                style={{ flex: 1 }}
-                behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-            >
-                <ScrollView onPress={Keyboard.dismiss}>
-                    {children}
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </>
-    );
+        return (
+            <>
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                >
+                    <ScrollView onPress={Keyboard.dismiss}>
+                        <Component {...props} />
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </>
+        );
+    };
 };
