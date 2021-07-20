@@ -1,6 +1,5 @@
 const EvaTheme = require('./eva');
 const { Color, paletteFromTheme, spacing, createBreakpoints } = require('./helpers');
-
 module.exports = {
     ...EvaTheme,
     spacing,
