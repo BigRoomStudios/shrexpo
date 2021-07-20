@@ -118,3 +118,5 @@ dist
 .expo
 
 .DS_Store
+
+package-lock.json
