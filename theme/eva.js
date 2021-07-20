@@ -1,7 +1,4 @@
-const { default: Eva } = require('@eva-design/eva');
-
 module.exports = {
-    ...Eva,
     'color-primary-100': '#D6E4FF',
     'color-primary-200': '#ADC8FF',
     'color-primary-300': '#84A9FF',

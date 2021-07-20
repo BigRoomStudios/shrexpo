@@ -6,9 +6,9 @@ const {
     Platform
 } = require('react-native');
 
-module.exports = function Layout(Component) {
+exports.withLayout = function withLayout(Component) {
 
-    return (props) => {
+    return function Layout(props) {
 
         return (
             <>
