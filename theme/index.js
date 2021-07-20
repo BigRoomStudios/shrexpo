@@ -2,8 +2,6 @@ const { Color } = require('./helpers');
 
 const BASE_FONT_SIZE = 16;
 
-const BASE_FONT_SIZE = 16;
-
 module.exports = {
     spacing: (m) => BASE_FONT_SIZE * m,
     palette: {
