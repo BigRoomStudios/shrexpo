@@ -11,6 +11,7 @@ Shrexpo is an opinionated, curated set of tools for building React Native applic
 - If testing on emulator (installation of required tooling will take 1 hour at absolute minimum, likely a good bit longer; possibly a day if you need to update XCode (if you need to test on iOS))
     - Emulators set up per platform
         - https://docs.expo.io/workflow/android-studio-emulator/
+            - for setting shell env vars, if using zsh on macos, you may need to set said vars in `.zshrc`, not `.zshenv`. For some reason, on running through that doc, said vars weren't set when using `.zshenv` on macos 11
         - https://docs.expo.io/workflow/ios-simulator/
         - Comprehensive guide, covrering both platforms: https://reactnative.dev/docs/environment-setup
 - If testing on physical device
@@ -21,9 +22,9 @@ Shrexpo is an opinionated, curated set of tools for building React Native applic
 
 1. `expo init my-project -t https://github.com/BigRoomStudios/shrexpo`
     - or, for a specific branch: `expo init my-project -t https://github.com/BigRoomStudios/shrexpo/tree/BRANCH-NAME`
+    - for additional customization, see https://docs.expo.io/workflow/expo-cli/#expo-init
 2. `cd my-project && expo start` (or `npm start`) — the Expo dev tools GUI should open in a new tab
 3. Open the app
-
    - if running on a simulator, in your terminal, press the key corresponding to the platform you want to test on (`i` for iOS, `a` for Android)
        - If this errors out, saying something like `Couldn't start project on Android: No Android connected device found, and no emulators could be started automatically`, try opening Android Studio, then running the Virtual Device first
    - if running on a device, scan the QR code shown in the dev tools tab
