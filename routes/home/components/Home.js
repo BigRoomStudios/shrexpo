@@ -3,20 +3,16 @@ const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
 const { View, Image, Button } = require('react-native');
 const { Text } = require('components/Type');
-const Duck = require('../../../assets/duck.jpg');
+const Shrek = require('../../../assets/shrek.png');
 
-const Ducky = Styled(Image)`
-    margin: ${({ theme }) => theme.spacing(2)}px auto;
-`;
-
-const WelcomeText = Styled(Text)`
-    margin: auto;
-`;
+const internals = {};
 
 module.exports = function Home({ navigation }) {
 
+    const { WelcomeImage, WelcomeText } = internals;
+
     return <View>
-        <Ducky source={Duck} />
+        <WelcomeImage source={Shrek} />
         <WelcomeText>you've been shreked</WelcomeText>
         <Button
             title="Go to Demo"
@@ -28,3 +24,14 @@ module.exports = function Home({ navigation }) {
 module.exports.propTypes = {
     navigation: T.object.isRequired
 };
+
+internals.WelcomeImage = Styled(Image)`
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.12;
+    margin: ${({ theme }) => theme.spacing(2)}px auto;
+`;
+
+internals.WelcomeText = Styled(Text)`
+    margin: auto;
+`;
