@@ -1,4 +1,3 @@
-const React = require('react');
 const T = require('prop-types');
 const { TouchableWithoutFeedback, Keyboard } = require('react-native');
 const { default: Styled } = require('styled-components');

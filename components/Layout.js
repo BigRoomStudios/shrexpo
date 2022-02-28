@@ -1,7 +1,6 @@
 'use strict';
 
-const React = require('react');
-const { KeyboardAvoidingView, SafeAreaView, ScrollView, Keyboard } = require('react-native');
+const { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, Keyboard } = require('react-native');
 const { default: Styled } = require('styled-components/native');
 
 const Header = Styled.View`
