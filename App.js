@@ -6,6 +6,7 @@ const { createStackNavigator } = require('@react-navigation/stack');
 const ReactRedux = require('react-redux');
 const MiddleEnd = require('strange-middle-end');
 const { KeyboardAvoidingView, SafeAreaView, Platform } = require('react-native');
+const { GestureHandlerRootView } = require('react-native-gesture-handler');
 const M = require('middle-end');
 const Theme = require('theme');
 const Routes = require('routes');
@@ -37,34 +38,36 @@ module.exports = function App() {
     }
 
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : null}
-            style={{ flex: 1 }}
-        >
-            <SafeAreaView style={{ flex: 1 }}>
-                <ThemeProvider theme={Theme}>
-                    <MiddleEnd.Provider middleEnd={middleEnd}>
-                        <ReactRedux.Provider store={middleEnd.store}>
-                            <NavigationContainer>
-                                <Stack.Navigator>
-                                    {Routes.map(({ path, component, options }) => {
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : null}
+                style={{ flex: 1 }}
+            >
+                <SafeAreaView style={{ flex: 1 }}>
+                    <ThemeProvider theme={Theme}>
+                        <MiddleEnd.Provider middleEnd={middleEnd}>
+                            <ReactRedux.Provider store={middleEnd.store}>
+                                <NavigationContainer>
+                                    <Stack.Navigator>
+                                        {Routes.map(({ path, component, options }) => {
 
-                                        return (
-                                            <Stack.Screen
-                                                key={path}
-                                                name={path}
-                                                component={component}
-                                                options={options}
-                                            />
-                                        );
-                                    })}
-                                </Stack.Navigator>
-                            </NavigationContainer>
-                            <StatusBar style="auto" />
-                        </ReactRedux.Provider>
-                    </MiddleEnd.Provider>
-                </ThemeProvider>
-            </SafeAreaView>
-        </KeyboardAvoidingView>
+                                            return (
+                                                <Stack.Screen
+                                                    key={path}
+                                                    name={path}
+                                                    component={component}
+                                                    options={options}
+                                                />
+                                            );
+                                        })}
+                                    </Stack.Navigator>
+                                </NavigationContainer>
+                                <StatusBar style="auto" />
+                            </ReactRedux.Provider>
+                        </MiddleEnd.Provider>
+                    </ThemeProvider>
+                </SafeAreaView>
+            </KeyboardAvoidingView>
+        </GestureHandlerRootView>
     );
 };
