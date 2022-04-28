@@ -6,26 +6,17 @@ const { Button, TextInput } = require('react-native');
 const { CenteredText, H2, getBaseStyles } = require('components/Type');
 const { CenteredView, FormView } = require('components/Views');
 
-const Heading = Styled(H2)`
-    margin: ${({ theme }) => theme.spacing(5, 'auto')};
-    font-size: ${({ theme }) => theme.spacing(3)}px;
-`;
-
-const ButtonWrapper = Styled.View`
-    margin-bottom: ${({ theme }) => theme.spacing(4)}px;
-`;
-
-const Input = Styled(TextInput)`
-    ${({ theme }) => getBaseStyles(theme)}
-    width: 90%;
-    margin: ${({ theme }) => theme.spacing(4, 'auto')};
-    padding: ${({ theme }) => theme.spacing(4)}px;
-    border: 1px solid;
-`;
+const internals = {};
 
 module.exports = function Demo({ counter, increment, double }) {
 
     const [input, setInput] = useState('');
+
+    const {
+        Heading,
+        ButtonWrapper,
+        Input
+    } = internals;
 
     return (
         <FormView>
@@ -59,3 +50,20 @@ module.exports.propTypes = {
     double: T.func.isRequired,
     increment: T.func.isRequired
 };
+
+internals.Heading = Styled(H2)`
+    margin: ${({ theme }) => theme.spacing(2)}px auto;
+    font-size: ${({ theme }) => theme.spacing(1.5)}px;
+`;
+
+internals.ButtonWrapper = Styled.View`
+    margin-bottom: ${({ theme }) => theme.spacing(1)}px;
+`;
+
+internals.Input = Styled(TextInput)`
+    ${({ theme }) => getBaseStyles(theme)}
+    width: 90%;
+    margin: ${({ theme }) => theme.spacing(1)}px auto;
+    padding: ${({ theme }) => theme.spacing(1)}px;
+    border: 1px solid;
+`;

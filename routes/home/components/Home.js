@@ -3,24 +3,19 @@ const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
 const { Image } = require('react-native');
 const { Button, Text } = require('@ui-kitten/components');
-const Duck = require('../../../assets/duck.jpg');
+const Shrek = require('../../../assets/shrek.png');
 
-const Ducky = Styled(Image)`
-    margin: ${({ theme }) => theme.spacing(4)}px auto;
-`;
-
-const WelcomeText = Styled(Text)`
+const internals = {};
     margin: ${({ theme }) => theme.spacing('auto', 'auto', 1)};
 `;
 
 const CenteredButton = Styled(Button)`
-    margin: auto;
-`;
 
 module.exports = function Home({ navigation }) {
 
-    return <>
-        <Ducky source={Duck} />
+    const { WelcomeImage, WelcomeText } = internals;
+
+        <WelcomeImage source={Shrek} />
         <WelcomeText>you've been shreked</WelcomeText>
         <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
     </>;
@@ -29,3 +24,14 @@ module.exports = function Home({ navigation }) {
 module.exports.propTypes = {
     navigation: T.object.isRequired
 };
+
+internals.WelcomeImage = Styled(Image)`
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.12;
+    margin: ${({ theme }) => theme.spacing(2)}px auto;
+`;
+
+internals.WelcomeText = Styled(Text)`
+    margin: auto;
+`;
