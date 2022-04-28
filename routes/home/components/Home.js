@@ -6,15 +6,12 @@ const { Button, Text } = require('@ui-kitten/components');
 const Shrek = require('../../../assets/shrek.png');
 
 const internals = {};
-    margin: ${({ theme }) => theme.spacing('auto', 'auto', 1)};
-`;
-
-const CenteredButton = Styled(Button)`
 
 module.exports = function Home({ navigation }) {
 
-    const { WelcomeImage, WelcomeText } = internals;
+    const { WelcomeImage, WelcomeText, CenteredButton } = internals;
 
+    return <>
         <WelcomeImage source={Shrek} />
         <WelcomeText>you've been shreked</WelcomeText>
         <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
@@ -33,5 +30,9 @@ internals.WelcomeImage = Styled(Image)`
 `;
 
 internals.WelcomeText = Styled(Text)`
+    margin: auto auto ${({ theme }) => theme.spacing(2)}px;
+`;
+
+internals.CenteredButton = Styled(Button)`
     margin: auto;
 `;

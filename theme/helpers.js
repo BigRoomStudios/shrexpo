@@ -24,6 +24,10 @@ exports.Color = class {
     }
 };
 
+/**
+ * Converts an Eva Design theme into a MUI-style palette
+ * @returns {Object} Returns an object with color keys e.g. { primary: { 100: '#ffffff' }, secondary: { ... } }
+ */
 exports.paletteFromTheme = (theme) => {
 
     const colors = Object.keys(theme).reduce((acc, key) => {
@@ -55,6 +59,16 @@ exports.paletteFromTheme = (theme) => {
     }, {});
 };
 
+/**
+ * Provides a spacing value based on a scaling factor
+ * @example
+ * // returns 16
+ * Helpers.spacing(2)
+ * @example
+ * // returns 'auto 16px'
+ * Helpers.spacing('auto', 2)
+ * @returns {(number|string)} Returns an object with color keys e.g. { primary: { 100: '#ffffff' }, secondary: { ... } }
+ */
 exports.spacing = (...args) => {
 
     if (args.length === 1) {
@@ -64,8 +78,7 @@ exports.spacing = (...args) => {
 
     const argToValue = (a) => {
 
-        Assert(a === 'auto' || !isNaN(a), `Expected '${a}' to be a number or 'auto'`);
-        return a === 'auto' ? a : `${parseInt(a, 10) * BASE_SCALING_FACTOR}px`;
+        return isNaN(a) ? a : `${parseInt(a, 10) * BASE_SCALING_FACTOR}px`;
     };
 
     return args.map(argToValue).join(' ');
