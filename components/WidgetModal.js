@@ -32,9 +32,11 @@ module.exports = function WidgetModal({
         AddButton,
         CancelButton,
         StyledTopNav,
+        ButtonWrapper,
         StyledModal,
         ContentContainer,
-        MainContent
+        MainContent,
+        Title
     } = internals;
 
     useEffect(() => {
@@ -59,7 +61,7 @@ module.exports = function WidgetModal({
 
             <Animated.ScrollView bounces={false} style={{ flex: 1, marginBottom: marginAnim.current }} keyboardShouldPersistTaps='handled'>
                 <StyledTopNav
-                    title={() => <Text category='h3' style={{ color: 'white', marginBottom: 0 }}>Hello</Text>}
+                    title={() => <Title>{title}</Title>}
                     accessoryRight={<CloseButton onPress={onDismissModal} accessoryRight={<Icons color='white' name='x' size={20} />} />}
                 />
                 <ContentContainer>
@@ -68,7 +70,7 @@ module.exports = function WidgetModal({
                     </MainContent>
                 </ContentContainer>
                 <Divider />
-                <TopNavigation
+                <ButtonWrapper
                     accessoryRight={
                         <View style={{ flexDirection: 'row' }}>
                             <CancelButton onPress={onPressCancel}>CANCEL</CancelButton>
@@ -92,7 +94,7 @@ internals.ContentContainer = Styled.View`
 internals.MainContent = Styled.View`
     flex: 1;
     background-color:#eee;
-    padding: ${({ theme }) => theme.spacing(3,2)}px;
+    padding: ${({ theme }) => theme.spacing(3,2)};
 `;
 
 internals.StyledButton = Styled(Button).attrs({ appearance: 'outline', size: 'giant' })``;
@@ -106,7 +108,18 @@ internals.CancelButton = Styled(internals.StyledButton)`
 internals.CloseButton = Styled(Button).attrs({ appearance: 'ghost' })``;
 
 internals.StyledTopNav = Styled(TopNavigation)`
-    background-color: ${({ theme }) => theme.palette.primary[500]};
+    background-color: ${({ theme }) => theme.palette.primary};
+`;
+
+internals.ButtonWrapper = Styled(TopNavigation)`
+    background-color: ${({ theme }) => theme.palette.slate[500]};
+`;
+
+internals.Title = Styled(Text).attrs({ category: 'h4' })`
+    color: ${({ theme }) => theme.palette.slate[100]};
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'System'
 `;
 
 internals.StyledModal = Styled(Modal)`

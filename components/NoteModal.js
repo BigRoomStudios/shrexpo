@@ -1,7 +1,8 @@
 const T = require('prop-types');
-const { View, TextInput: Input } = require('react-native');
+const { View } = require('react-native');
 const { default: Styled } = require('styled-components');
 const { Text } = require('components/Type');
+const { Input } = require('@ui-kitten/components');
 const WidgetModal = require('components/WidgetModal');
 
 const internals = {};

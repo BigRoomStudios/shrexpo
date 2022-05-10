@@ -46,18 +46,6 @@ module.exports = function Demo({ counter, increment, double }) {
                         value={input}
                         onChangeText={setInput}
                     />
-                    <Input
-                        value={input}
-                        onChangeText={setInput}
-                    />
-                    <Input
-                        value={input}
-                        onChangeText={setInput}
-                    />
-                    <Input
-                        value={input}
-                        onChangeText={setInput}
-                    />
                     {!!input && <CenteredText>Hey you typed {input}!</CenteredText>}
                     <ButtonWrapper>
                         <Button
@@ -74,6 +62,7 @@ module.exports = function Demo({ counter, increment, double }) {
                 onChange={setStagedNote}
                 onDismissModal={() => setIsNoteModalOpen(false)}
                 onPressCancel={() => setIsNoteModalOpen(false)}
+                onPressSubmit={() => setIsNoteModalOpen(false)}
             />
         </>
     );
