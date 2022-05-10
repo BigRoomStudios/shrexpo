@@ -7,31 +7,21 @@ const Header = Styled.View`
     background: ${({ theme }) => theme.palette.BRAND};
 `;
 
-const HeaderText = Styled.Text`
-    padding: ${({ theme }) => theme.spacing(0.25)}px 0 ${({ theme }) => theme.spacing(1.5)}px;
-    font-size: ${({ theme }) => theme.spacing(1.125)}px;
-    font-weight: bold;
-    text-align: center;
-    color: ${({ theme }) => theme.palette.ETCH};
-`;
+exports.withLayout = function withLayout(Component) {
 
-module.exports = function Layout({ children }) {
+    return function Layout(props) {
 
-    return (
-        <>
-            <Header>
-                <SafeAreaView>
-                    <HeaderText>shrexpo</HeaderText>
-                </SafeAreaView>
-            </Header>
-            <KeyboardAvoidingView
-                style={{ flex: 1 }}
-                behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-            >
-                <ScrollView onPress={Keyboard.dismiss}>
-                    {children}
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </>
-    );
+        return (
+            <>
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                >
+                    <ScrollView onPress={Keyboard.dismiss}>
+                        <Component {...props} />
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </>
+        );
+    };
 };

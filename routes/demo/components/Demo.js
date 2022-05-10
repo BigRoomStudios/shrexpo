@@ -87,7 +87,7 @@ module.exports.propTypes = {
 
 internals.Heading = Styled(H2)`
     margin: ${({ theme }) => theme.spacing(2)}px auto;
-    font-size: ${({ theme }) => theme.spacing(1.5)}px;
+    font-size: ${({ theme }) => theme.spacing(2)}px;
 `;
 
 internals.ButtonWrapper = Styled.View`

@@ -6,6 +6,8 @@ const { createStackNavigator } = require('@react-navigation/stack');
 const ReactRedux = require('react-redux');
 const MiddleEnd = require('strange-middle-end');
 const { GestureHandlerRootView } = require('react-native-gesture-handler');
+const Eva = require('@eva-design/eva');
+const { ApplicationProvider } = require('@ui-kitten/components');
 const M = require('middle-end');
 const Theme = require('theme');
 const Routes = require('routes');
@@ -16,9 +18,6 @@ const {
     OpenSans_700Bold,
     OpenSans_700Bold_Italic
 } = require('@expo-google-fonts/open-sans');
-
-const Eva = require('@eva-design/eva');
-const { ApplicationProvider } = require('@ui-kitten/components');
 
 const middleEnd = M.create({
     logErrors: process.env.NODE_ENV !== 'test'

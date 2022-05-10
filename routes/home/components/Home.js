@@ -1,23 +1,20 @@
 const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
-const { View, Image, Button } = require('react-native');
-const { Text } = require('components/Type');
+const { Image } = require('react-native');
+const { Button, Text } = require('@ui-kitten/components');
 const Shrek = require('../../../assets/shrek.png');
 
 const internals = {};
 
 module.exports = function Home({ navigation }) {
 
-    const { WelcomeImage, WelcomeText } = internals;
+    const { WelcomeImage, WelcomeText, CenteredButton } = internals;
 
-    return <View>
+    return <>
         <WelcomeImage source={Shrek} />
         <WelcomeText>you've been shreked</WelcomeText>
-        <Button
-            title="Go to Demo"
-            onPress={() => navigation.navigate('/demo')}
-        />
-    </View>;
+        <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
+    </>;
 };
 
 module.exports.propTypes = {
@@ -32,5 +29,9 @@ internals.WelcomeImage = Styled(Image)`
 `;
 
 internals.WelcomeText = Styled(Text)`
+    margin: auto auto ${({ theme }) => theme.spacing(2)}px;
+`;
+
+internals.CenteredButton = Styled(Button)`
     margin: auto;
 `;

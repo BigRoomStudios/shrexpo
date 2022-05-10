@@ -1,12 +1,12 @@
+const { withLayout } = require('components/Layout');
 const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
-const { withAltKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayoutAlt');
 
 module.exports = [
     {
         path: '/',
-        component: Home,
+        component: withLayout(Home),
         options: {
             title: 'Home'
         }
