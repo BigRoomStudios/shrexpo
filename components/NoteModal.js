@@ -3,7 +3,7 @@ const { View } = require('react-native');
 const { default: Styled } = require('styled-components');
 const { Text } = require('components/Type');
 const { Input } = require('@ui-kitten/components');
-const WidgetModal = require('components/WidgetModal');
+const ExampleModal = require('components/ExampleModal');
 
 const internals = {};
 
@@ -12,7 +12,7 @@ module.exports = function NoteModal({ isVisible, isEditing, onDismissModal, valu
     const { Label } = internals;
 
     return (
-        <WidgetModal
+        <ExampleModal
             visible={isVisible}
             title={isEditing ? 'Edit Note' : 'Add Note'}
             affirmativeLabel={isEditing ? 'SAVE' : 'ADD'}
@@ -36,7 +36,7 @@ module.exports = function NoteModal({ isVisible, isEditing, onDismissModal, valu
                     selectTextOnFocus
                 />
             </View>
-        </WidgetModal>
+        </ExampleModal>
     );
 };
 

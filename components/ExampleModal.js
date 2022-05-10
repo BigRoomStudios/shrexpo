@@ -10,7 +10,7 @@ const { useRef, useEffect } = require('react');
 
 const internals = {};
 
-module.exports = function WidgetModal({
+module.exports = function ExampleModal({
     title,
     isVisible,
     onDismissModal,

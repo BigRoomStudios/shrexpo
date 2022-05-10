@@ -5,8 +5,6 @@ const { Button, TextInput, View } = require('react-native');
 const { CenteredText, H2, getBaseStyles } = require('components/Type');
 const { CenteredView } = require('components/Views');
 const NoteModal = require('components/NoteModal');
-const { Modal } = require('@ui-kitten/components');
-
 
 const internals = {};
 
