@@ -20,8 +20,6 @@ module.exports = function Demo({ counter, increment, double }) {
         Input
     } = internals;
 
-    console.log(isNoteModalOpen);
-
     return (
         <>
             <View style={{ flex: 1 }}>
