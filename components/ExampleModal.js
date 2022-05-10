@@ -14,8 +14,6 @@ module.exports = function ExampleModal({
     title,
     isVisible,
     onDismissModal,
-    value,
-    onChange,
     onPressSubmit,
     onPressCancel,
     children,
@@ -137,11 +135,8 @@ internals.Label = Styled(Text).attrs({ category: 's1' })`
 `;
 
 module.exports.propTypes = {
-    menuItem: T.object.isRequired,
     onDismissModal: T.func.isRequired,
     isVisible: T.bool,
-    value: T.string.isRequired,
-    onChange: T.func.isRequired,
     onPressSubmit: T.func.isRequired,
     onPressCancel: T.func.isRequired,
     children: T.any,

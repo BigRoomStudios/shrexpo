@@ -17,7 +17,9 @@ module.exports = function Demo({ counter, increment, double }) {
     const {
         Heading,
         ButtonWrapper,
-        Input
+        Input,
+        Filler,
+        FillerText
     } = internals;
 
     return (
@@ -37,6 +39,9 @@ module.exports = function Demo({ counter, increment, double }) {
                             onPress={double}
                         />
                     </ButtonWrapper>
+                    <Filler>
+                        <FillerText>Filler to test keyboard avoidance below 👇</FillerText>
+                    </Filler>
                     <Heading>Type somethin'</Heading>
                     <Input
                         value={input}
@@ -69,6 +74,19 @@ module.exports.propTypes = {
     double: T.func.isRequired,
     increment: T.func.isRequired
 };
+
+internals.Filler = Styled.View`
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.palette.info[700]};
+`;
+
+internals.FillerText = Styled(H2)`
+    color: ${({ theme }) => theme.palette.slate[100]};
+    text-align: center;
+    margin-bottom: 0;
+`;
 
 internals.Heading = Styled(H2)`
     margin: ${({ theme }) => theme.spacing(2)}px auto;
