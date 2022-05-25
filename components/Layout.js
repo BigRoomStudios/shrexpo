@@ -1,5 +1,3 @@
-'use strict';
-
 const { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, Keyboard } = require('react-native');
 const { default: Styled } = require('styled-components/native');
 

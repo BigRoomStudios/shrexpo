@@ -91,8 +91,8 @@ internals.ContentContainer = Styled.View`
 
 internals.MainContent = Styled.View`
     flex: 1;
-    background-color:#eee;
-    padding: ${({ theme }) => theme.spacing(3,2)};
+    background-color: #eee;
+    padding: ${({ theme }) => theme.spacing(3, 2)};
 `;
 
 internals.StyledButton = Styled(Button).attrs({ appearance: 'outline', size: 'giant' })``;
@@ -117,12 +117,12 @@ internals.Title = Styled(Text).attrs({ category: 'h4' })`
     color: ${({ theme }) => theme.palette.slate[100]};
     font-size: 22px;
     font-weight: 600;
-    font-family: 'System'
+    font-family: 'System';
 `;
 
 internals.StyledModal = Styled(Modal)`
     max-height: ${Dimensions.get('window').height - 10}px;
-    maxWidth: 352px;
+    max-width: 352px;
     width: 80%;
     overflow: hidden;
     border-radius: 8px;
