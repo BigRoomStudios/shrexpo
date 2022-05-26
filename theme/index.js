@@ -1,5 +1,6 @@
 const EvaTheme = require('./eva');
 const { Color, paletteFromTheme, spacing, createBreakpoints } = require('./helpers');
+const { Easing } = require('react-native');
 
 module.exports = {
     ...EvaTheme,
@@ -31,6 +32,21 @@ module.exports = {
     },
     typography: {
         primary: 'OpenSans_400Regular'
+    },
+    animation: {
+        basic: {
+            duration: 500,
+            useNativeDriver: true
+        },
+        elastic: {
+            duration: 500,
+            easing: Easing.elastic(1),
+            useNativeDriver: true
+        },
+        keyboard: {
+            duration: 100,
+            useNativeDriver: false
+        }
     },
     breakpoints: createBreakpoints()
 };

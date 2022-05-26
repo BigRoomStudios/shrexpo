@@ -1,4 +1,3 @@
-const React = require('react');
 const { useSelector } = require('react-redux');
 const { useMiddleEnd } = require('strange-middle-end');
 const Demo = require('../components/Demo');
