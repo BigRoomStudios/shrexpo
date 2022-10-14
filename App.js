@@ -1,4 +1,3 @@
-const React = require('react');
 const { default: AppLoading } = require('expo-app-loading');
 const { StatusBar } = require('expo-status-bar');
 const { ThemeProvider } = require('styled-components');
@@ -8,6 +7,7 @@ const ReactRedux = require('react-redux');
 const MiddleEnd = require('strange-middle-end');
 const { KeyboardAvoidingView, SafeAreaView, Platform } = require('react-native');
 const Eva = require('@eva-design/eva');
+const { GestureHandlerRootView } = require('react-native-gesture-handler');
 const { ApplicationProvider } = require('@ui-kitten/components');
 const M = require('middle-end');
 const Theme = require('theme');
@@ -40,36 +40,38 @@ module.exports = function App() {
     }
 
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : null}
-            style={{ flex: 1 }}
-        >
-            <SafeAreaView style={{ flex: 1 }}>
-                <ThemeProvider theme={Theme}>
-                    <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
-                        <MiddleEnd.Provider middleEnd={middleEnd}>
-                            <ReactRedux.Provider store={middleEnd.store}>
-                                <NavigationContainer>
-                                    <Stack.Navigator>
-                                        {Routes.map(({ path, component, options }) => {
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : null}
+                style={{ flex: 1 }}
+            >
+                <SafeAreaView style={{ flex: 1 }}>
+                    <ThemeProvider theme={Theme}>
+                        <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
+                            <MiddleEnd.Provider middleEnd={middleEnd}>
+                                <ReactRedux.Provider store={middleEnd.store}>
+                                    <NavigationContainer>
+                                        <Stack.Navigator>
+                                            {Routes.map(({ path, component, options }) => {
 
-                                            return (
-                                                <Stack.Screen
-                                                    key={path}
-                                                    name={path}
-                                                    component={component}
-                                                    options={options}
-                                                />
-                                            );
-                                        })}
-                                    </Stack.Navigator>
-                                </NavigationContainer>
-                                <StatusBar style="auto" />
-                            </ReactRedux.Provider>
-                        </MiddleEnd.Provider>
-                    </ApplicationProvider>
-                </ThemeProvider>
-            </SafeAreaView>
-        </KeyboardAvoidingView>
+                                                return (
+                                                    <Stack.Screen
+                                                        key={path}
+                                                        name={path}
+                                                        component={component}
+                                                        options={options}
+                                                    />
+                                                );
+                                            })}
+                                        </Stack.Navigator>
+                                    </NavigationContainer>
+                                    <StatusBar style="auto" />
+                                </ReactRedux.Provider>
+                            </MiddleEnd.Provider>
+                        </ApplicationProvider>
+                    </ThemeProvider>
+                </SafeAreaView>
+            </KeyboardAvoidingView>
+        </GestureHandlerRootView>
     );
 };
