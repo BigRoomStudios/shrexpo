@@ -41,37 +41,30 @@ module.exports = function App() {
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : null}
-                style={{ flex: 1 }}
-            >
-                <SafeAreaView style={{ flex: 1 }}>
-                    <ThemeProvider theme={Theme}>
-                        <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
-                            <MiddleEnd.Provider middleEnd={middleEnd}>
-                                <ReactRedux.Provider store={middleEnd.store}>
-                                    <NavigationContainer>
-                                        <Stack.Navigator>
-                                            {Routes.map(({ path, component, options }) => {
+            <ThemeProvider theme={Theme}>
+                <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
+                    <MiddleEnd.Provider middleEnd={middleEnd}>
+                        <ReactRedux.Provider store={middleEnd.store}>
+                            <NavigationContainer>
+                                <Stack.Navigator>
+                                    {Routes.map(({ path, component, options }) => {
 
-                                                return (
-                                                    <Stack.Screen
-                                                        key={path}
-                                                        name={path}
-                                                        component={component}
-                                                        options={options}
-                                                    />
-                                                );
-                                            })}
-                                        </Stack.Navigator>
-                                    </NavigationContainer>
-                                    <StatusBar style="auto" />
-                                </ReactRedux.Provider>
-                            </MiddleEnd.Provider>
-                        </ApplicationProvider>
-                    </ThemeProvider>
-                </SafeAreaView>
-            </KeyboardAvoidingView>
+                                        return (
+                                            <Stack.Screen
+                                                key={path}
+                                                name={path}
+                                                component={component}
+                                                options={options}
+                                            />
+                                        );
+                                    })}
+                                </Stack.Navigator>
+                            </NavigationContainer>
+                            <StatusBar style="auto" />
+                        </ReactRedux.Provider>
+                    </MiddleEnd.Provider>
+                </ApplicationProvider>
+            </ThemeProvider>
         </GestureHandlerRootView>
     );
 };
