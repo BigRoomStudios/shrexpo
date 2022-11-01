@@ -1,9 +1,9 @@
-const { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, Keyboard } = require('react-native');
-const { default: Styled } = require('styled-components/native');
-
-const Header = Styled.View`
-    background: ${({ theme }) => theme.palette.BRAND};
-`;
+const {
+    KeyboardAvoidingView,
+    ScrollView,
+    Keyboard,
+    Platform
+} = require('react-native');
 
 exports.withLayout = function withLayout(Component) {
 
