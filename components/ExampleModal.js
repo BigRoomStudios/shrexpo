@@ -1,6 +1,6 @@
-const { useRef, useEffect, useState } = require('react');
+const { useRef, useEffect } = require('react');
 const T = require('prop-types');
-const { View, Animated, Dimensions, Keyboard } = require('react-native');
+const { View, Animated, Keyboard, useWindowDimensions } = require('react-native');
 const { default: Styled } = require('styled-components');
 const { TopNavigation, Modal, Button, Divider } = require('@ui-kitten/components');
 const { useSafeAreaInsets } = require('react-native-safe-area-context');
@@ -28,8 +28,7 @@ module.exports = function ExampleModal({
     const isKeyboardOpenRef = useRef(false);
     const marginAnim = useRef(new Animated.Value(0));
 
-    const height = Dimensions.get('window').height;
-    const [windowHeight, setWindowHeight] = useState(height);
+    const { height: windowHeight } = useWindowDimensions();
 
     const {
         CloseButton,
@@ -74,20 +73,6 @@ module.exports = function ExampleModal({
             showSubscription.remove();
             hideSubscription.remove();
         };
-    }, []);
-
-
-    useEffect(() => {
-
-        const subscription = Dimensions.addEventListener(
-            'change',
-            ({ window }) => {
-
-                setWindowHeight(window.height);
-            }
-        );
-
-        return () => subscription?.remove();
     }, []);
 
     return (
