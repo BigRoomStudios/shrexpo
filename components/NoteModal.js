@@ -47,7 +47,6 @@ internals.Label = Styled(Text).attrs({ category: 's1' })`
 `;
 
 module.exports.propTypes = {
-    menuItem: T.object.isRequired,
     onDismissModal: T.func.isRequired,
     isVisible: T.oneOf([true, false, 'editing']),
     isEditing: T.bool,

@@ -63,7 +63,7 @@ module.exports = function Demo({ counter, increment, double }) {
                 onChange={setStagedNote}
                 onDismissModal={() => setIsNoteModalOpen(false)}
                 onPressCancel={() => setIsNoteModalOpen(false)}
-                onPressSubmit={() => setIsNoteModalOpen(false)}
+                onPressAdd={() => setIsNoteModalOpen(false)}
             />
         </>
     );

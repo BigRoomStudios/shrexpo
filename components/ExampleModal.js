@@ -1,12 +1,13 @@
+const { useRef, useEffect, useState } = require('react');
 const T = require('prop-types');
 const { View, Animated, Dimensions, Keyboard } = require('react-native');
 const { default: Styled } = require('styled-components');
-const { Text } = require('components/Type');
 const { TopNavigation, Modal, Button, Divider } = require('@ui-kitten/components');
-const { default: Icons } = require('@expo/vector-icons/Feather');
+const { useSafeAreaInsets } = require('react-native-safe-area-context');
+const { Text } = require('components/Type');
 const Theme = require('theme');
+const { CloseIcon } = require('utils/icons');
 const { useKeyboardSize } = require('hooks/use-keyboard-size');
-const { useRef, useEffect } = require('react');
 
 const internals = {};
 
@@ -22,8 +23,13 @@ module.exports = function ExampleModal({
     ...props
 }) {
 
+    const insets = useSafeAreaInsets();
     const keyboardSize = useKeyboardSize();
+    const isKeyboardOpenRef = useRef(false);
     const marginAnim = useRef(new Animated.Value(0));
+
+    const height = Dimensions.get('window').height;
+    const [windowHeight, setWindowHeight] = useState(height);
 
     const {
         CloseButton,
@@ -43,7 +49,46 @@ module.exports = function ExampleModal({
             toValue: keyboardSize,
             ...Theme.animation.keyboard
         }).start();
+
     }, [keyboardSize]);
+
+    useEffect(() => {
+
+        const showSubscription = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+
+                isKeyboardOpenRef.current = true;
+            }
+        );
+        const hideSubscription = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+
+                isKeyboardOpenRef.current = false;
+            }
+        );
+
+        return () => {
+
+            showSubscription.remove();
+            hideSubscription.remove();
+        };
+    }, []);
+
+
+    useEffect(() => {
+
+        const subscription = Dimensions.addEventListener(
+            'change',
+            ({ window }) => {
+
+                setWindowHeight(window.height);
+            }
+        );
+
+        return () => subscription?.remove();
+    }, []);
 
     return (
         <StyledModal
@@ -51,46 +96,49 @@ module.exports = function ExampleModal({
             backdropStyle={{ backgroundColor: 'rgba(56, 56, 56, 0.5)' }}
             onBackdropPress={() => {
 
-                Keyboard.dismiss();
-                onDismissModal();
+                if (isKeyboardOpenRef.current) {
+                    Keyboard.dismiss();
+                }
+                else {
+                    onDismissModal();
+                }
             }}
             {...props}
+            style={{
+                maxHeight: windowHeight - insets.top - insets.bottom,
+                ...props.style
+            }}
         >
-
-            <Animated.ScrollView bounces={false} style={{ flex: 1, marginBottom: marginAnim.current }} keyboardShouldPersistTaps='handled'>
-                <StyledTopNav
-                    title={() => <Title>{title}</Title>}
-                    accessoryRight={<CloseButton onPress={onDismissModal} accessoryRight={<Icons color='white' name='x' size={20} />} />}
-                />
-                <ContentContainer>
-                    <MainContent>
-                        {children}
-                    </MainContent>
-                </ContentContainer>
-                <Divider />
-                <ButtonWrapper
-                    accessoryRight={
-                        <View style={{ flexDirection: 'row' }}>
-                            <CancelButton onPress={onPressCancel}>CANCEL</CancelButton>
-                            <AddButton disabled={shouldDisableSubmit} onPress={onPressSubmit} size='giant'>{affirmativeLabel}</AddButton>
-                        </View>
-                    }
-                />
+            <Animated.ScrollView bounces={false} style={{ marginBottom: marginAnim.current }} keyboardShouldPersistTaps='handled'>
+                <View>
+                    <StyledTopNav
+                        title={() => <Title>{title}</Title>}
+                        accessoryRight={<CloseButton onPress={onDismissModal} accessoryRight={<CloseIcon color='white' />} />}
+                    />
+                    <ContentContainer>
+                        <MainContent>
+                            {children}
+                        </MainContent>
+                    </ContentContainer>
+                    <Divider />
+                    <ButtonWrapper
+                        accessoryRight={
+                            <View style={{ flexDirection: 'row' }}>
+                                <CancelButton onPress={onPressCancel}>CANCEL</CancelButton>
+                                <AddButton disabled={shouldDisableSubmit} onPress={onPressSubmit} size='giant'>{affirmativeLabel}</AddButton>
+                            </View>
+                        }
+                    />
+                </View>
             </Animated.ScrollView>
 
         </StyledModal>
     );
 };
 
-internals.ContentContainer = Styled.View`
-    flex: 1;
-    flex-grow: 1;
-    background-color: white;
-    flex-direction: row;
-`;
+internals.ContentContainer = Styled.View``;
 
 internals.MainContent = Styled.View`
-    flex: 1;
     background-color: #eee;
     padding: ${({ theme }) => theme.spacing(3, 2)};
 `;
@@ -121,7 +169,6 @@ internals.Title = Styled(Text).attrs({ category: 'h4' })`
 `;
 
 internals.StyledModal = Styled(Modal)`
-    max-height: ${Dimensions.get('window').height - 10}px;
     max-width: 352px;
     width: 80%;
     overflow: hidden;
@@ -140,9 +187,10 @@ module.exports.propTypes = {
     onPressSubmit: T.func.isRequired,
     onPressCancel: T.func.isRequired,
     children: T.any,
-    title: T.oneOf([T.string, T.func]),
+    title: T.oneOfType([T.string, T.func]),
     affirmativeLabel: T.string,
-    shouldDisableSubmit: T.bool
+    shouldDisableSubmit: T.bool,
+    style: T.object
 };
 
 module.exports.defaultProps = {
