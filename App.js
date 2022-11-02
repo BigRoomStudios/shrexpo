@@ -5,7 +5,6 @@ const { NavigationContainer } = require('@react-navigation/native');
 const { createStackNavigator } = require('@react-navigation/stack');
 const ReactRedux = require('react-redux');
 const MiddleEnd = require('strange-middle-end');
-const { KeyboardAvoidingView, SafeAreaView, Platform } = require('react-native');
 const Eva = require('@eva-design/eva');
 const { GestureHandlerRootView } = require('react-native-gesture-handler');
 const { ApplicationProvider } = require('@ui-kitten/components');

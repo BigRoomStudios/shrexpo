@@ -43,8 +43,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "strange-middle-end": "^0.4.0",
-    "styled-components": "^5.2.3",
-    "react-native-svg": "12.1.0"
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "@hapi/eslint-config-hapi": "^13.0.2",
