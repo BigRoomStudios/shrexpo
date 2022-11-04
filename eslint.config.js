@@ -7,6 +7,9 @@ module.exports = {
         jest: true,
         node: true
     },
+    globals: {
+        __DEV__: 'readonly'
+    },
     plugins: [
         'react',
         'jsx-a11y',

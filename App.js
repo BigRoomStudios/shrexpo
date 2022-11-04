@@ -8,6 +8,7 @@ const MiddleEnd = require('strange-middle-end');
 const Eva = require('@eva-design/eva');
 const { GestureHandlerRootView } = require('react-native-gesture-handler');
 const { ApplicationProvider } = require('@ui-kitten/components');
+const { default: ExpoConstants } = require('expo-constants');
 const M = require('middle-end');
 const Theme = require('theme');
 const Routes = require('routes');
@@ -19,9 +20,7 @@ const {
     OpenSans_700Bold_Italic
 } = require('@expo-google-fonts/open-sans');
 
-const middleEnd = M.create({
-    logErrors: process.env.NODE_ENV !== 'test'
-}).initialize();
+const internals = {};
 
 const Stack = createStackNavigator();
 
@@ -42,8 +41,8 @@ module.exports = function App() {
         <GestureHandlerRootView style={{ flex: 1 }}>
             <ThemeProvider theme={Theme}>
                 <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
-                    <MiddleEnd.Provider middleEnd={middleEnd}>
-                        <ReactRedux.Provider store={middleEnd.store}>
+                    <MiddleEnd.Provider middleEnd={internals.middleEnd}>
+                        <ReactRedux.Provider store={internals.middleEnd.store}>
                             <NavigationContainer>
                                 <Stack.Navigator>
                                     {Routes.map(({ path, component, options }) => {
@@ -67,3 +66,13 @@ module.exports = function App() {
         </GestureHandlerRootView>
     );
 };
+
+// e.g. 192.168.0.0:19000 (private IP on expo dev server port)
+// --> 192.168.0.0:3000 (private IP on API's default port)
+// hostUri is NOT set in production
+internals.localUrl = () => __DEV__ && `http://${ExpoConstants.manifest?.hostUri.split(':')[0].concat(':3000')}`;
+
+internals.middleEnd = M.create({
+    apiBaseUrl: ExpoConstants.manifest.extra?.apiUrl || internals.localUrl(),
+    logErrors: process.env.NODE_ENV !== 'test'
+}).initialize();
