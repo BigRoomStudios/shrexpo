@@ -9,14 +9,13 @@ module.exports = function LoginContainer(props) {
     const navigation = useNavigation();
     const [error, setError] = useState('');
 
-    const onSubmit = async ({ name, email, password }) => {
+    const onSubmit = async ({ email, password }) => {
 
         setError('');
 
         const [err, res] = await m.dispatch.auth.login({
             username: email,
-            password,
-            name
+            password
         });
 
         if (err) {
@@ -29,8 +28,6 @@ module.exports = function LoginContainer(props) {
             }
         }
         else {
-            const { result: user } = res;
-
             navigation.navigate('demo');
         }
     };

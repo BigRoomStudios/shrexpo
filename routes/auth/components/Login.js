@@ -1,7 +1,6 @@
-const { useState, useRef, useEffect } = require('react');
+const { useState, useRef } = require('react');
 const { useForm } = require('react-hook-form');
 const { Pressable } = require('react-native');
-const { useIsFocused } = require('@react-navigation/native');
 const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
 const { Feather: Icons } = require('@expo/vector-icons');
@@ -15,38 +14,31 @@ const internals = {};
 
 module.exports = function Login({ onSubmit, error }) {
 
-    const [email, setEmail] = useState('');
     const [canShowEmailError, setCanShowEmailError] = useState(false);
     const [isSecureTextEntry, setIsSecureTextEntry] = useState(true);
-    const [password, setPassword] = useState('');
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
-    const { control, formState: { errors } } = useForm();
+    const { control, watch, handleSubmit, formState: { errors } } = useForm();
     const fieldProps = { control, errors };
 
     const toggleIsSecureEntry = () => setIsSecureTextEntry(!isSecureTextEntry);
 
-    const isFocused = useIsFocused();
+    const emailWatch = watch('email');
+    const passwordWatch = watch('password');
 
-    // TODO: only reset the form after it successfully submits
-    useEffect(() => {
+    const renderIcon = (style, props) => {
 
-        // reset the form
-        setEmail('');
-        setPassword('');
-        setIsSecureTextEntry(true);
-        setCanShowEmailError(false);
-    }, [isFocused]);
-
-    const renderIcon = (props) => {
+        const { tintColor, ...styleProps } = style;
 
         return <Pressable onPress={toggleIsSecureEntry} hitSlop={Theme.spacing(2)}>
             <Icons
-                {...props} name={isSecureTextEntry ? 'eye' : 'eye-off'}
-                color={Theme.palette.basic[800]}
+                {...props}
+                name={isSecureTextEntry ? 'eye' : 'eye-off'}
+                color={tintColor || Theme.palette.basic[800]}
                 size={20}
+                style={styleProps}
             />
         </Pressable>;
     };
@@ -78,8 +70,6 @@ module.exports = function Login({ onSubmit, error }) {
                 ref={emailRef}
                 name='email'
                 label='Email'
-                value={email}
-                onChangeText={setEmail}
                 autoCompleteType='email'
                 textContentType='emailAddress'
                 keyboardType='email-address'
@@ -88,9 +78,9 @@ module.exports = function Login({ onSubmit, error }) {
                 returnKeyType='next'
                 onSubmitEditing={() => passwordRef.current.focus()}
                 blurOnSubmit={false}
-                onBlur={() => email && setCanShowEmailError(true)}
+                onBlur={() => emailWatch && setCanShowEmailError(true)}
                 onFocus={() => setCanShowEmailError(false)}
-                caption={email && canShowEmailError && !IsEmail(email) && renderCaption}
+                caption={emailWatch && canShowEmailError && !IsEmail(emailWatch) && renderCaption}
                 {...fieldProps}
             />
             <Input
@@ -98,22 +88,19 @@ module.exports = function Login({ onSubmit, error }) {
                 ref={passwordRef}
                 name='password'
                 label='Password'
-                value={password}
-                onChangeText={setPassword}
                 autoCompleteType='password'
                 textContentType='password'
                 secureTextEntry={isSecureTextEntry}
-                onSubmitEditing={() => onSubmit({ email, password })}
+                onSubmitEditing={handleSubmit(onSubmit)}
                 accessoryRight={renderIcon}
                 {...fieldProps}
             />
             {!!error && <Text status='danger'>{error}</Text>}
-            <Link status='basic' underline to='forgot-password'>Forgot password?</Link>
+            <Link status='basic' underline to='forgot-password' navigationArgs={{ email: emailWatch }}>Forgot password?</Link>
             <ButtonWrapper>
                 <Button
-                    onPress={() => onSubmit({ email, password })}
-                    disabled={!email || !password || !IsEmail(email)}
-                    size='giant'
+                    onPress={handleSubmit(onSubmit)}
+                    disabled={!emailWatch || !passwordWatch || !IsEmail(emailWatch)}
                 >
                     Log in
                 </Button>
