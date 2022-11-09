@@ -77,7 +77,7 @@ module.exports = function ExampleModal({
     return (
         <StyledModal
             visible={isVisible}
-            backdropStyle={{ backgroundColor: Theme.palette.etchTranslucent[300]}}
+            backdropStyle={{ backgroundColor: Theme.palette.etchTranslucent[300] }}
             onBackdropPress={() => {
 
                 if (isKeyboardOpenRef.current) {
