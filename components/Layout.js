@@ -6,7 +6,6 @@ const {
 } = require('react-native');
 const { useSafeAreaInsets } = require('react-native-safe-area-context');
 
-
 exports.withLayout = function withLayout(Component) {
 
     return function Layout(props) {
