@@ -3,7 +3,8 @@ const AuthTokenUtils = require('../../utils/auth-token');
 
 const {
     FETCH_CURRENT_USER,
-    LOGIN
+    LOGIN,
+    REGISTER
 } = require('./action-types');
 
 const { createAction } = MiddleEnd;
@@ -51,6 +52,24 @@ module.exports = (m) => {
                     }
 
                     return user;
+                }
+            }),
+            register: createAction(REGISTER, {
+                handler: async ({ username, password }) => {
+
+                    const client = getClient();
+
+                    const { data: results } = await client.post('/register', {
+                        username,
+                        password
+                    });
+
+                    return results;
+                },
+                // Needs feedback. Not sure if this is how we want to handle successful registration
+                after: async ({ original: { username, password } }) => {
+
+                    await m.dispatch.auth.login({ username, password });
                 }
             })
         }
