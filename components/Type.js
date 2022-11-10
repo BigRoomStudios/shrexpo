@@ -48,11 +48,11 @@ exports.H3 = Styled.Text`
     font-weight: bold;
 `;
 
-const Link = ({ to, onPress, hitSlop, children, status, underline, disabled, ...props }) => {
+const Link = ({ to, onPress, hitSlop, children, status, underline, disabled, navigationArgs, ...props }) => {
 
     const navigation = useNavigation();
     return (
-        <Pressable disabled={disabled} onPress={onPress ? onPress : () => navigation.navigate(to)} hitSlop={hitSlop}>
+        <Pressable disabled={disabled} onPress={onPress ? onPress : () => navigation.navigate(to, { ...navigationArgs })} hitSlop={hitSlop}>
             <Text
                 {...props}
                 style={{ textDecorationLine: underline ? 'underline' : 'none', ...props.style }}
@@ -72,7 +72,8 @@ Link.propTypes = {
     hitSlop: T.number,
     onPress: T.func,
     disabled: T.bool,
-    style: T.object
+    style: T.object,
+    navigationArgs: T.object
 };
 
 Link.defaultProps = {

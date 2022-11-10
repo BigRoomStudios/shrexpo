@@ -8,7 +8,7 @@ const { withAuthLayout } = require('components/AuthLayout');
 module.exports = [
     {
         path: '/',
-        component: withLayout(Home),
+        component: Home,
         options: {
             title: 'Home'
         }

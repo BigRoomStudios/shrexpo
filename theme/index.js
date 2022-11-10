@@ -28,6 +28,9 @@ module.exports = {
             800: '#888888',
             900: '#999999'
         }),
+        etchTranslucent: new Color({
+            300: 'rgba(51, 51, 51, .5)'
+        }),
         ...paletteFromTheme(EvaTheme)
     },
     typography: {

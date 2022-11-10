@@ -1,8 +1,5 @@
 const { View, Image } = require('react-native');
 const { default: Styled } = require('styled-components/native');
-const { useNavigation, useRoute } = require('@react-navigation/native');
-const { Button } = require('@ui-kitten/components');
-const { ArrowLeftIcon } = require('utils/icons');
 const LogoSrc = require('../assets/shrek.png');
 const { useOnline } = require('../hooks/use-online');
 const OfflineIndicator = require('../components/OfflineIndicator');
@@ -30,7 +27,7 @@ exports.withAuthLayout = function withAuthLayout(Component) {
                 >
                     <View
                         style={{
-                            width: '100%',
+                            width: '80%',
                             maxWidth: 304
                         }}
                     >
@@ -44,8 +41,8 @@ exports.withAuthLayout = function withAuthLayout(Component) {
 };
 
 internals.Logo = Styled(Image)`
-    width: 209px;
-    aspect-ratio: 1.92;
+    width: 100%;
+    aspect-ratio: 1.12;
     height: auto;
     margin: 0 auto;
 `;

@@ -37,7 +37,6 @@ module.exports = function ExampleModal({
         StyledTopNav,
         ButtonWrapper,
         StyledModal,
-        ContentContainer,
         MainContent,
         Title
     } = internals;
@@ -78,7 +77,7 @@ module.exports = function ExampleModal({
     return (
         <StyledModal
             visible={isVisible}
-            backdropStyle={{ backgroundColor: 'rgba(56, 56, 56, 0.5)' }}
+            backdropStyle={{ backgroundColor: Theme.palette.etchTranslucent[300]}}
             onBackdropPress={() => {
 
                 if (isKeyboardOpenRef.current) {
@@ -100,11 +99,11 @@ module.exports = function ExampleModal({
                         title={() => <Title>{title}</Title>}
                         accessoryRight={<CloseButton onPress={onDismissModal} accessoryRight={<CloseIcon color='white' />} />}
                     />
-                    <ContentContainer>
+                    <View>
                         <MainContent>
                             {children}
                         </MainContent>
-                    </ContentContainer>
+                    </View>
                     <Divider />
                     <ButtonWrapper
                         accessoryRight={
@@ -120,8 +119,6 @@ module.exports = function ExampleModal({
         </StyledModal>
     );
 };
-
-internals.ContentContainer = Styled.View``;
 
 internals.MainContent = Styled.View`
     background-color: #eee;

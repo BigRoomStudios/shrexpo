@@ -1,21 +1,24 @@
 const T = require('prop-types');
 const { default: Styled } = require('styled-components/native');
-const { Image } = require('react-native');
+const { Image, View, useWindowDimensions } = require('react-native');
 const { Button, Text } = require('@ui-kitten/components');
 const Shrek = require('../../../assets/shrek.png');
 
 const internals = {};
 
-module.exports = function Home({ navigation }) {
+module.exports = function Home({ navigation, ...props }) {
 
     const { WelcomeImage, WelcomeText, CenteredButton } = internals;
+    const { height } = useWindowDimensions();
 
-    return <>
-        <WelcomeImage source={Shrek} />
-        <WelcomeText>you've been shreked</WelcomeText>
-        <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
-        <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log In</CenteredButton>
-    </>;
+    return (
+        <View {...props}>
+            <WelcomeImage source={Shrek} style={{ maxHeight: height * .6 }} />
+            <WelcomeText>you've been shreked</WelcomeText>
+            <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
+            <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log In</CenteredButton>
+        </View>
+    );
 };
 
 module.exports.propTypes = {
@@ -30,9 +33,11 @@ internals.WelcomeImage = Styled(Image)`
 `;
 
 internals.WelcomeText = Styled(Text)`
-    margin: auto auto ${({ theme }) => theme.spacing(2)}px;
+    margin: 0 auto ${({ theme }) => theme.spacing(2)}px;
 `;
 
 internals.CenteredButton = Styled(Button)`
-    margin: auto;
+    margin: ${({ theme }) => theme.spacing(0, 'auto', 2) };
+    width: 80%;
+    max-width: 400px
 `;
