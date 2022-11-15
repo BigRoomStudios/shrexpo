@@ -1,17 +1,14 @@
 const T = require('prop-types');
-const { KeyboardAwareScrollView } = require('react-native-keyboard-aware-scroll-view');
-const { default: Styled } = require('styled-components/native');
+const { ScrollView } = require('react-native');
 
 const internals = {};
 
 module.exports = function Form({ isDirty, onSubmit, submitLabel, children, disabled, ...props }) {
 
-    const { Container } = internals;
-
     return (
-        <Container {...props} keyboardShouldPersistTaps='handled'>
+        <ScrollView {...props} keyboardShouldPersistTaps='handled'>
             {children}
-        </Container>
+        </ScrollView>
     );
 };
 
@@ -28,7 +25,3 @@ module.exports.defaultProps = {
     disabled: false,
     submitLabel: 'Save Changes'
 };
-
-internals.Container = Styled.ScrollView`
-
-`;
