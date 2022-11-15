@@ -41,8 +41,8 @@ internals.BannerContainer = Styled.View`
     }}px;
     background-color: ${({ theme }) => theme.palette.warning};
     z-index: 1;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: ${({ theme }) => theme.shape.borderRadius}px;
+    border-bottom-left-radius: ${({ theme }) => theme.shape.borderRadius}px;
 `;
 
 internals.BannerText = Styled(Text)``;
