@@ -16,6 +16,7 @@ module.exports = function Home({ navigation, ...props }) {
             <WelcomeImage source={Shrek} style={{ maxHeight: height * .6 }} />
             <WelcomeText>you've been shreked</WelcomeText>
             <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
+            <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log In</CenteredButton>
         </View>
     );
 };

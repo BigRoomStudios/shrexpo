@@ -1,4 +1,9 @@
 const { default: Styled } = require('styled-components/native');
+const { Pressable } = require('react-native');
+const { PropTypes: T } = require('prop-types');
+const { useNavigation } = require('@react-navigation/native');
+const { Text } = require('@ui-kitten/components');
+const Theme = require('theme');
 
 const getBaseStyles = (theme) => {
 
@@ -42,3 +47,39 @@ exports.H3 = Styled.Text`
     font-size: ${({ theme }) => theme.spacing(2.4)}px;
     font-weight: bold;
 `;
+
+const Link = ({ to, onPress, hitSlop, children, status, underline, disabled, navigationArgs, ...props }) => {
+
+    const navigation = useNavigation();
+    return (
+        <Pressable disabled={disabled} onPress={onPress ? onPress : () => navigation.navigate(to, { ...navigationArgs })} hitSlop={hitSlop}>
+            <Text
+                {...props}
+                style={{ textDecorationLine: underline ? 'underline' : 'none', ...props.style }}
+                status={disabled ? 'basic' : status}
+            >
+                {children}
+            </Text>
+        </Pressable>
+    );
+};
+
+Link.propTypes = {
+    to: T.string,
+    children: T.node.isRequired,
+    status: T.oneOf(['basic', 'primary', 'success', 'info', 'warning', 'danger', 'control']),
+    underline: T.bool,
+    hitSlop: T.number,
+    onPress: T.func,
+    disabled: T.bool,
+    style: T.object,
+    navigationArgs: T.object
+};
+
+Link.defaultProps = {
+    status: 'info',
+    hitSlop: Theme.spacing(2),
+    disabled: false
+};
+
+exports.Link = Link;

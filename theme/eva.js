@@ -73,5 +73,14 @@ module.exports = {
     'color-danger-transparent-300': 'rgba(255, 56, 56, 0.24)',
     'color-danger-transparent-400': 'rgba(255, 56, 56, 0.32)',
     'color-danger-transparent-500': 'rgba(255, 56, 56, 0.4)',
-    'color-danger-transparent-600': 'rgba(255, 56, 56, 0.48)'
+    'color-danger-transparent-600': 'rgba(255, 56, 56, 0.48)',
+    'color-basic-100': '#FFFFFF',
+    'color-basic-200': '#EEEEEE',
+    'color-basic-300': '#EDF1F7',
+    'color-basic-400': '#E4E9F2',
+    'color-basic-500': '#383838',
+    'color-basic-600': '#8F9BB3',
+    'color-basic-700': '#2E3A59',
+    'color-basic-800': '#222B45',
+    'color-basic-900': '#192038'
 };
