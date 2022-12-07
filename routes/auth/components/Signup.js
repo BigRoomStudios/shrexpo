@@ -110,7 +110,6 @@ module.exports = function Signup({ onSubmit, error }) {
 };
 
 module.exports.propTypes = {
-    navigation: T.object.isRequired,
     onSubmit: T.func.isRequired,
     error: T.string
 };
