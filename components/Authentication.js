@@ -20,11 +20,11 @@ exports.withAuthentication = function withAuthentication(Component) {
             if (!isAuthenticated && isAuthenticationSettled && isFocused) { // not authenticated, force login
                 if (!attemptingRef.current) {
                     attemptingRef.current = true;
-                    navigation.navigate('login');
+                    navigation.navigate('/login');
                 }
                 else {
                     attemptingRef.current = false;
-                    navigation.canGoBack() ? navigation.goBack() : navigation.navigate('home');
+                    navigation.canGoBack() ? navigation.goBack() : navigation.navigate('/home');
                 }
             }
         }, [isAuthenticated, isAuthenticationSettled, isFocused, navigation]);
