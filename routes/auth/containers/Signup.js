@@ -13,7 +13,7 @@ module.exports = function SignupContainer(props) {
 
         setError('');
 
-        const [err, res] = await m.dispatch.auth.login({
+        const [err] = await m.dispatch.auth.register({
             username: email,
             password
         });
