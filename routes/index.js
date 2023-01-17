@@ -5,7 +5,7 @@ const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 const Login = require('routes/auth/containers/Login');
 const Signup = require('routes/auth/containers/Signup');
-const Protected = require('routes/auth/components/Protected');
+const Protected = require('routes/protected/components/Protected');
 
 module.exports = [
     {
