@@ -72,6 +72,18 @@ module.exports = (m) => {
                     await m.dispatch.auth.login({ username, password });
                 }
             })
+        },
+        selectors: {
+            getIsAuthenticated: ({ model }) => {
+
+                const { [FETCH_CURRENT_USER.BASE]: user } = model.indexes;
+                return !!user && !!user.result;
+            },
+            getHasAuthenticationSettled: ({ model }) => {
+
+                const { [FETCH_CURRENT_USER.BASE]: index } = model.indexes;
+                return !!index && !index.inFlight;
+            }
         }
     };
 };
