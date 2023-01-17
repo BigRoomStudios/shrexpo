@@ -17,6 +17,7 @@ module.exports = function Home({ navigation, ...props }) {
             <WelcomeText>you've been shreked</WelcomeText>
             <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
             <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log In</CenteredButton>
+            <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/protected')}>Protected</CenteredButton>
         </View>
     );
 };
