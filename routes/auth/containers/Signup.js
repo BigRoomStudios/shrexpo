@@ -28,7 +28,7 @@ module.exports = function SignupContainer(props) {
             }
         }
         else {
-            navigation.navigate('demo');
+            navigation.navigate('/demo');
         }
     };
 
