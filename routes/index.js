@@ -1,5 +1,6 @@
 const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
 const { withAuthLayout } = require('components/AuthLayout');
+const { withAuthentication } = require('components/Authentication');
 const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 const Login = require('routes/auth/containers/Login');
@@ -37,7 +38,7 @@ module.exports = [
     },
     {
         path: '/protected',
-        component: Protected,
+        component: withAuthentication(withAuthLayout(Protected)),
         options: {
             title: 'Exclusive Page'
         }
