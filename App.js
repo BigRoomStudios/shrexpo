@@ -1,4 +1,5 @@
-const { default: AppLoading } = require('expo-app-loading');
+const { useCallback } = require('react');
+const SplashScreen = require('expo-splash-screen');
 const { StatusBar } = require('expo-status-bar');
 const { ThemeProvider } = require('styled-components');
 const { NavigationContainer } = require('@react-navigation/native');
@@ -19,6 +20,8 @@ const {
     OpenSans_700Bold_Italic
 } = require('@expo-google-fonts/open-sans');
 
+SplashScreen.preventAutoHideAsync();
+
 const middleEnd = M.create({
     logErrors: process.env.NODE_ENV !== 'test'
 }).initialize();
@@ -34,12 +37,20 @@ module.exports = function App() {
         OpenSans_700Bold_Italic
     });
 
+    const onLayoutRootView = useCallback(async () => {
+
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+
+    }, [fontsLoaded]);
+
     if (!fontsLoaded) {
-        return <AppLoading />;
+        return null;
     }
 
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
+        <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
             <ThemeProvider theme={Theme}>
                 <ApplicationProvider {...Eva} theme={{ ...Eva.light, ...Theme }}>
                     <MiddleEnd.Provider middleEnd={middleEnd}>
