@@ -40,5 +40,5 @@ internals.WelcomeText = Styled(Text)`
 internals.CenteredButton = Styled(Button)`
     margin: ${({ theme }) => theme.spacing(0, 'auto', 2) };
     width: 80%;
-    max-width: 400px
+    max-width: 400px;
 `;
