@@ -1,6 +1,9 @@
 const MiddleEnd = require('strange-middle-end');
 const Schema = require('./schema');
 
+const Helpers = require('../helpers');
+const { FETCH_CURRENT_USER } = require('../auth/action-types');
+
 const internals = {};
 
 module.exports = (m) => {
@@ -23,7 +26,25 @@ module.exports = (m) => {
                 mutable: true
             },
             { /* add initial state here */},
-            { /* add handlers here */}
+            {
+                ...Helpers.logoutHandlers((model) => {
+
+                    Object.keys(model.indexes).forEach((index) => {
+
+                        if (index === FETCH_CURRENT_USER.BASE    // This index can stay around, as it maintains auth state
+                        ) {
+                            return;
+                        }
+
+                        delete model.indexes[index];
+                    });
+
+                    Object.keys(model.entities).forEach((entity) => {
+
+                        model.entities[entity] = {};
+                    });
+                })
+            }
         )),
         selectors: {}
     };
