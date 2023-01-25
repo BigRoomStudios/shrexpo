@@ -1,4 +1,3 @@
-const { useState } = require('react');
 const { useMiddleEnd } = require('strange-middle-end');
 const { useNavigation } = require('@react-navigation/native');
 const Protected = require('../components/Protected');
