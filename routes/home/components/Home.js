@@ -17,6 +17,7 @@ module.exports = function Home({ navigation, ...props }) {
             <WelcomeText>you've been shreked</WelcomeText>
             <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
             <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log In</CenteredButton>
+            <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/protected')}>Protected</CenteredButton>
         </View>
     );
 };
@@ -39,5 +40,5 @@ internals.WelcomeText = Styled(Text)`
 internals.CenteredButton = Styled(Button)`
     margin: ${({ theme }) => theme.spacing(0, 'auto', 2) };
     width: 80%;
-    max-width: 400px
+    max-width: 400px;
 `;

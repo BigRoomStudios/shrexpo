@@ -1,9 +1,9 @@
 const { useState } = require('react');
 const { useMiddleEnd } = require('strange-middle-end');
 const { useNavigation } = require('@react-navigation/native');
-const Login = require('../components/Login');
+const Signup = require('../components/Signup');
 
-module.exports = function LoginContainer(props) {
+module.exports = function SignupContainer(props) {
 
     const m = useMiddleEnd();
     const navigation = useNavigation();
@@ -13,7 +13,7 @@ module.exports = function LoginContainer(props) {
 
         setError('');
 
-        const [err] = await m.dispatch.auth.login({
+        const [err] = await m.dispatch.auth.register({
             username: email,
             password
         });
@@ -32,5 +32,5 @@ module.exports = function LoginContainer(props) {
         }
     };
 
-    return (<Login {...props} onSubmit={onSubmit} error={error} />);
+    return (<Signup {...props} onSubmit={onSubmit} error={error} />);
 };

@@ -36,6 +36,10 @@ module.exports = {
     typography: {
         primary: 'OpenSans_400Regular'
     },
+    shape: {
+        borderRadius: 4,
+        boxShadow: `${spacing(-0.25)}px ${spacing(0.5)}px rgba(0, 0, 0, 0.25)`
+    },
     animation: {
         basic: {
             duration: 500,

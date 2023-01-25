@@ -4,6 +4,7 @@ const AuthTokenUtils = require('../../utils/auth-token');
 const {
     FETCH_CURRENT_USER,
     LOGIN,
+    LOGOUT,
     REGISTER
 } = require('./action-types');
 
@@ -54,6 +55,25 @@ module.exports = (m) => {
                     return user;
                 }
             }),
+            logout: createAction(LOGOUT, {
+                index: FETCH_CURRENT_USER.BASE, // clears user from state on success and flips getHasAuthenticationSettled to true on request
+                handler: async ({ reauthorize } = {}) => {
+
+                    const client = getClient();
+                    try {
+                        await client.logout({ reauthorize });
+                        return null;
+                    }
+                    catch (err) {
+
+                        if (err.response?.status === 401) {
+                            return null;
+                        }
+
+                        throw err;
+                    }
+                }
+            }),
             register: createAction(REGISTER, {
                 handler: async ({ username, password }) => {
 
@@ -72,6 +92,18 @@ module.exports = (m) => {
                     await m.dispatch.auth.login({ username, password });
                 }
             })
+        },
+        selectors: {
+            getIsAuthenticated: ({ model }) => {
+
+                const { [FETCH_CURRENT_USER.BASE]: user } = model.indexes;
+                return !!user && !!user.result;
+            },
+            getHasAuthenticationSettled: ({ model }) => {
+
+                const { [FETCH_CURRENT_USER.BASE]: index } = model.indexes;
+                return !!index && !index.inFlight;
+            }
         }
     };
 };

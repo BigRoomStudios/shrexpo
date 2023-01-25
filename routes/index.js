@@ -1,9 +1,11 @@
-const { withLayout } = require('components/Layout');
+const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
+const { withAuthLayout } = require('components/AuthLayout');
+const { withAuthentication } = require('components/Authentication');
 const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 const Login = require('routes/auth/containers/Login');
-const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
-const { withAuthLayout } = require('components/AuthLayout');
+const Signup = require('routes/auth/containers/Signup');
+const Protected = require('routes/protected/containers/Protected');
 
 module.exports = [
     {
@@ -24,7 +26,21 @@ module.exports = [
         path: '/login',
         component: withKeyboardAvoidingLayout(withAuthLayout(Login)),
         options: {
-            title: 'Login'
+            title: 'Log In'
+        }
+    },
+    {
+        path: '/signup',
+        component: withKeyboardAvoidingLayout(withAuthLayout(Signup)),
+        options: {
+            title: 'Sign Up'
+        }
+    },
+    {
+        path: '/protected',
+        component: withAuthentication(Protected),
+        options: {
+            title: 'Exclusive Page'
         }
     }
 ];
