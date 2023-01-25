@@ -25,7 +25,7 @@ module.exports.propTypes = {
 };
 
 internals.BigText = Styled(Text)`
-    font-size: 80px;
+    font-size: 60px;
     width: 80%;
     max-width: 800px;
     text-align: center;
