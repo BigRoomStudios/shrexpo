@@ -13,7 +13,7 @@ module.exports = function LoginContainer(props) {
 
         setError('');
 
-        const [err, res] = await m.dispatch.auth.login({
+        const [err] = await m.dispatch.auth.login({
             username: email,
             password
         });
@@ -28,7 +28,7 @@ module.exports = function LoginContainer(props) {
             }
         }
         else {
-            navigation.navigate('demo');
+            navigation.navigate('/demo');
         }
     };
 
