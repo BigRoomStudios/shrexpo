@@ -13,7 +13,7 @@ module.exports = function SignupContainer(props) {
 
         setError('');
 
-        const [err, res] = await m.dispatch.auth.login({
+        const [err] = await m.dispatch.auth.login({
             username: email,
             password
         });
@@ -32,5 +32,5 @@ module.exports = function SignupContainer(props) {
         }
     };
 
-    return (<Signup {...props} onSubmit={onSubmit} error={error} />);
+    return <Signup {...props} onSubmit={onSubmit} error={error} />;
 };
