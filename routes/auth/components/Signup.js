@@ -12,7 +12,7 @@ const Theme = require('theme');
 
 const internals = {};
 
-module.exports = function Login({ onSubmit, error }) {
+module.exports = function Signup({ onSubmit, error }) {
 
     const [canShowEmailError, setCanShowEmailError] = useState(false);
     const [isSecureTextEntry, setIsSecureTextEntry] = useState(true);
@@ -96,22 +96,20 @@ module.exports = function Login({ onSubmit, error }) {
                 {...fieldProps}
             />
             {!!error && <Text status='danger'>{error}</Text>}
-            <Link status='basic' underline to='forgot-password' navigationArgs={{ email: emailWatch }}>Forgot password?</Link>
             <ButtonWrapper>
                 <Button
                     onPress={handleSubmit(onSubmit)}
                     disabled={!emailWatch || !passwordWatch || !IsEmail(emailWatch)}
                 >
-                    Log In
+                    Create Account
                 </Button>
             </ButtonWrapper>
-            <Text><Text>Don't have an account?</Text> <Link status='basic' underline to='/signup' navigationArgs={{ email: emailWatch }}>Sign up</Link></Text>
+            <Text><Text>Have an account?</Text> <Link status='basic' underline to='/login' navigationArgs={{ email: emailWatch }}>Log in</Link></Text>
         </>
     );
 };
 
 module.exports.propTypes = {
-    navigation: T.object.isRequired,
     onSubmit: T.func.isRequired,
     error: T.string
 };

@@ -1,8 +1,9 @@
+const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
+const { withAuthLayout } = require('components/AuthLayout');
 const Home = require('routes/home/components/Home');
 const Demo = require('routes/demo/containers/Demo');
 const Login = require('routes/auth/containers/Login');
-const { withKeyboardAvoidingLayout } = require('components/KeyboardAvoidingLayout');
-const { withAuthLayout } = require('components/AuthLayout');
+const Signup = require('routes/auth/containers/Signup');
 
 module.exports = [
     {
@@ -23,7 +24,14 @@ module.exports = [
         path: '/login',
         component: withKeyboardAvoidingLayout(withAuthLayout(Login)),
         options: {
-            title: 'Login'
+            title: 'Log In'
+        }
+    },
+    {
+        path: '/signup',
+        component: withKeyboardAvoidingLayout(withAuthLayout(Signup)),
+        options: {
+            title: 'Sign Up'
         }
     }
 ];
