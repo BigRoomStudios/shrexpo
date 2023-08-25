@@ -28,7 +28,15 @@ module.exports = function LoginContainer(props) {
             }
         }
         else {
-            navigation.navigate('/demo');
+            const routes = navigation.getState().routes;
+            const loginRoute = routes.find(({ name }) => name === '/login');
+
+            if (loginRoute.params?.prev) {
+                navigation.navigate(loginRoute.params.prev);
+            }
+            else {
+                navigation.navigate('/demo');
+            }
         }
     };
 
