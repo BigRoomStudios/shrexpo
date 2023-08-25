@@ -1,7 +1,7 @@
 const { useEffect, useRef } = require('react');
 const { useMiddleEnd } = require('strange-middle-end');
 const { useSelector } = require('react-redux');
-const { useIsFocused, useNavigation } = require('@react-navigation/native');
+const { useIsFocused, useNavigation, useRoute } = require('@react-navigation/native');
 const LoadingOverlay = require('components/LoadingOverlay');
 
 exports.withAuthentication = function withAuthentication(Component) {
@@ -14,20 +14,28 @@ exports.withAuthentication = function withAuthentication(Component) {
         const isAuthenticationSettled = useSelector(m.selectors.auth.getHasAuthenticationSettled);
         const navigation = useNavigation();
         const isFocused = useIsFocused();
+        const route = useRoute();
 
         useEffect(() => {
 
             if (!isAuthenticated && isAuthenticationSettled && isFocused) { // not authenticated, force login
                 if (!attemptingRef.current) {
                     attemptingRef.current = true;
-                    navigation.navigate('/login');
+
+                    navigation.navigate(
+                        '/login',
+                        {
+                            prev: route.name
+                        }
+                    );
+                    // navigation.navigate('/login');
                 }
                 else {
                     attemptingRef.current = false;
                     navigation.canGoBack() ? navigation.goBack() : navigation.navigate('/home');
                 }
             }
-        }, [isAuthenticated, isAuthenticationSettled, isFocused, navigation]);
+        }, [isAuthenticated, isAuthenticationSettled, isFocused, navigation, route]);
 
         if (!isAuthenticationSettled  && !isAuthenticated) { // authenticating from unauthenticated (doesn't cover reauthorizing or fetchCurrentUser calls)
             return (<LoadingOverlay />);
