@@ -9,13 +9,9 @@ module.exports = function ProtectedContainer(props) {
 
     const onPressLogout = async () => {
 
-        try {
-            await m.dispatch.auth.logout();
-        }
-        finally {
-            navigation.navigate('login');
-        }
+        await m.dispatch.auth.logout();
+        navigation.navigate('/login');
     };
 
-    return (<Protected {...props} onPressLogout={onPressLogout} />);
+    return (<Protected {...props} onPressLogout={onPressLogout} onPressDemo={() => navigation.navigate('/demo')} />);
 };

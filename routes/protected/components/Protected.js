@@ -5,7 +5,7 @@ const { Button, Text } = require('@ui-kitten/components');
 
 const internals = {};
 
-module.exports = function Protected({ navigation, ...props }) {
+module.exports = function Protected({ onPressLogout, onPressDemo, ...props }) {
 
     const { CenteredButton, BigText, Wrapper } = internals;
 
@@ -13,15 +13,16 @@ module.exports = function Protected({ navigation, ...props }) {
         <Wrapper {...props}>
             <View>
                 <BigText>This page is exclusive to logged-in users.</BigText>
-                <CenteredButton onPress={() => navigation.navigate('/demo')}>Go to Demo</CenteredButton>
-                <CenteredButton appearance='ghost' onPress={() => navigation.navigate('/login')}>Log Out</CenteredButton>
+                <CenteredButton onPress={onPressDemo}>Go to Demo</CenteredButton>
+                <CenteredButton appearance='ghost' onPress={onPressLogout}>Log Out</CenteredButton>
             </View>
         </Wrapper>
     );
 };
 
 module.exports.propTypes = {
-    navigation: T.object.isRequired
+    onPressLogout: T.func.isRequired,
+    onPressDemo: T.func.isRequired
 };
 
 internals.BigText = Styled(Text)`
