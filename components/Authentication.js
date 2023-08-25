@@ -28,7 +28,6 @@ exports.withAuthentication = function withAuthentication(Component) {
                             prev: route.name
                         }
                     );
-                    // navigation.navigate('/login');
                 }
                 else {
                     attemptingRef.current = false;
